@@ -2,7 +2,7 @@
 
 require_once 'tests/units/Base.php';
 
-use Kanboard\Plugin\{{ cookiecutter.plugin_namespace }}\Plugin;
+use Kanboard\Plugin\SubTaskComplete\Plugin;
 
 class PluginTest extends Base
 {

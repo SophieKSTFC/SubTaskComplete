@@ -1,6 +1,6 @@
 <?php
 
-namespace Kanboard\Plugin\{{ cookiecutter.plugin_namespace }};
+namespace Kanboard\Plugin\SubTaskComplete;
 
 use Kanboard\Core\Plugin\Base;
 use Kanboard\Core\Translator;
@@ -18,17 +18,17 @@ class Plugin extends Base
 
     public function getPluginName()
     {
-        return '{{ cookiecutter.plugin_name }}';
+        return t('SubTaskComplete');
     }
 
     public function getPluginDescription()
     {
-        return t('{{ cookiecutter.plugin_description }}');
+        return t('Kanboard plugin to stop non project managers amending subtask complete status');
     }
 
     public function getPluginAuthor()
     {
-        return '{{ cookiecutter.plugin_author }}';
+        return 'Sophie Kirkham';
     }
 
     public function getPluginVersion()
@@ -38,7 +38,7 @@ class Plugin extends Base
 
     public function getPluginHomepage()
     {
-        return '{{ cookiecutter.plugin_homepage }}';
+        return 'tbc';
     }
 }
 
