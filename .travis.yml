@@ -29,4 +29,4 @@ before_script:
 
 script:
   - phpunit -c --verbose tests/units.$DB.xml 
-  - phpunit -c --verbose plugins/$PLUGIN/Test/
+  #- phpunit -c --verbose plugins/$PLUGIN/Test/
