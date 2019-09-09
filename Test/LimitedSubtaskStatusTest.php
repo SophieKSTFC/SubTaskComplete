@@ -1,10 +1,7 @@
 <?php
 
 require_once 'tests/units/Base.php';
-use Kanboard\Plugin\Mailgun\SubTaskComplete\Controller\LimitedSubtaskStatusController;
-
-
-
+use Kanboard\Plugin\SubTaskComplete\SubTaskComplete\Controller\LimitedSubtaskStatusController;
 use Kanboard\Model\TaskFinderModel;
 use Kanboard\Model\ProjectModel;
 use Kanboard\Model\ProjectMetadataModel;
