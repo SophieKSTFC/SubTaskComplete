@@ -8,7 +8,7 @@ class PluginTest extends Base
 {
     public function testPlugin(){
 
-        $this->plugin = new Plugin($this->container);
+        $plugin = new Plugin($this->container);
         $this->assertSame(null, $plugin->initialize());
         $this->assertSame(null, $plugin->onStartup());
         $this->assertNotEmpty($plugin->getPluginName());
