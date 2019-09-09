@@ -11,7 +11,7 @@ php:
 
 env:
   global:
-    - PLUGIN={{ cookiecutter.plugin_namespace }}
+    - PLUGIN=SubTaskComplete
     - KANBOARD_REPO=https://github.com/kanboard/kanboard.git
   matrix:
     - DB=sqlite

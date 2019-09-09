@@ -6,15 +6,16 @@ use Kanboard\Plugin\SubTaskComplete\Plugin;
 
 class PluginTest extends Base
 {
-    public function testPlugin()
-    {
-        $plugin = new Plugin($this->container);
-        $this->assertSame(null, $plugin->initialize());
-        $this->assertSame(null, $plugin->onStartup());
-        $this->assertNotEmpty($plugin->getPluginName());
-        $this->assertNotEmpty($plugin->getPluginDescription());
-        $this->assertNotEmpty($plugin->getPluginAuthor());
-        $this->assertNotEmpty($plugin->getPluginVersion());
-        $this->assertNotEmpty($plugin->getPluginHomepage());
+    public function testPlugin(){
+
+        $this->plugin = new Plugin($this->container);
+        $this->assertSame(null, $this->$plugin->initialize());
+        $this->assertSame(null, $this->$plugin->onStartup());
+        $this->assertNotEmpty($this->$plugin->getPluginName());
+        $this->assertNotEmpty($this->$plugin->getPluginDescription());
+        $this->assertNotEmpty($this->$plugin->getPluginAuthor());
+        $this->assertNotEmpty($this->$plugin->getPluginVersion());
+        $this->assertNotEmpty($this->$plugin->getPluginHomepage());
     }
+
 }
