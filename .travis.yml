@@ -28,4 +28,5 @@ before_script:
   - ls -la plugins/
 
 script:
-  - phpunit -c tests/units.$DB.xml plugins/$PLUGIN/Test/
+  - phpunit -c tests/units.$DB.xml 
+  - phpunit -c plugins/$PLUGIN/Test/
