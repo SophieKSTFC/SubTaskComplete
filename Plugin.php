@@ -3,12 +3,17 @@
 namespace Kanboard\Plugin\SubTaskComplete;
 
 use Kanboard\Core\Plugin\Base;
+use Kanboard\Model\SubtaskModel;
 use Kanboard\Core\Translator;
+use Kanboard\Core\Security\Role;
+use Kanboard\Plugin\SubTaskComplete\Controller\LimitedSubtaskStatusController;
 
 class Plugin extends Base
 {
     public function initialize()
-    {
+    {   
+        //overwrite the subtask helper with our own custom helper.
+        $this->helper->register('subtask', '\Kanboard\Plugin\SubTaskComplete\Helper\CustomSubtaskHelper');
     }
 
     public function onStartup()
@@ -40,5 +45,10 @@ class Plugin extends Base
     {
         return 'tbc';
     }
+
+    public function getCompatibleVersion(){
+        return  '>= 1.0.0';
+    }
+
 }
 
