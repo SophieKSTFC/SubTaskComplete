@@ -28,5 +28,4 @@ before_script:
   - ls -la plugins/
 
 script:
-  - phpunit --debug -c tests/units.$DB.xml 
-  #- phpunit -c --verbose plugins/$PLUGIN/Test/
+  - phpunit --debug -c tests/units.$DB.xml plugins/$PLUGIN/Test/
