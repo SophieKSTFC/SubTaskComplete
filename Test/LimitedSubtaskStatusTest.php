@@ -1,7 +1,7 @@
 <?php
 
 require_once 'tests/units/Base.php';
-use Kanboard\Plugin\SubTaskComplete\SubTaskComplete\Controller\LimitedSubtaskStatusController;
+use Kanboard\Plugin\SubTaskComplete\Controller\LimitedSubtaskStatusController;
 use Kanboard\Model\TaskFinderModel;
 use Kanboard\Model\ProjectModel;
 use Kanboard\Model\ProjectMetadataModel;
@@ -12,7 +12,6 @@ use Kanboard\Core\Security\Role;
 
 
 class LimitedSubtaskStatusTest extends base {
-
 
 
     public function testSubtaskAuthorisation(){
