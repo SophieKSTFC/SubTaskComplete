@@ -50,8 +50,10 @@ class CustomSubtaskHelper extends Base
     public function renderToggleStatus(array $task, array $subtask, $fragment = '', $userId = 0)
     {
         error_log("helper was called");
-        
+
         if (! $this->helper->user->hasProjectAccess('SubtaskController', 'edit', $task['project_id'])) {
+            error_log("not got project access called");
+            error_log("user".$this->helper->user->getFullname(2));
             $html = $this->renderTitle($subtask);
         } else {
 
