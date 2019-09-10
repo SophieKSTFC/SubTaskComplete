@@ -74,7 +74,7 @@ class CustomSubtaskHelper extends Base
             } else {
                 if($debug){
                     error_log("debug helper was called");
-                    $controller = new LimitedSubtaskController($this->container);
+                    $controller = new LimitedSubtaskStatusController($this->container);
                     $html = $controller->change();
                 }
                 else{
