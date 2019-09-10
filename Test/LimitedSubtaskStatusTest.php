@@ -46,6 +46,7 @@ class LimitedSubtaskStatusTest extends base {
         $task = $taskFinderModel->getById(1);
 
         $this->assertNotEmpty($subtask);
+        error_log(print_r($subtask));
         $this->assertEquals(SubtaskModel::STATUS_TODO, $subtask['status']);
 
         //create two users
