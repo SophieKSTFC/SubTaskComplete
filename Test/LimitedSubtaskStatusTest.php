@@ -74,6 +74,8 @@ class LimitedSubtaskStatusTest extends base {
         $subtask = $subtaskModel->getById(1);
         $this->assertNotEmpty($subtask);
         error_log("status: ".$subtask['status']);
+        error_log(print_r($subtask));
+        
         $this->assertEquals(SubtaskModel::STATUS_INPROGRESS, $subtask['status']);
         
         
