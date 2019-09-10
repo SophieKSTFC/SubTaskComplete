@@ -75,7 +75,7 @@ class CustomSubtaskHelper extends Base
                 if($debug){
                     error_log("debug helper was called");
                     $controller = new LimitedSubtaskStatusController($this->container);
-                    $html = $controller->change();
+                    $html = $controller->change($debug=true, $params);
                 }
                 else{
                     $html = $this->helper->url->link($title, 'LimitedSubtaskStatusController', 'change', $params, false, 'js-subtask-toggle-status', $this->getSubtaskTooltip($subtask));

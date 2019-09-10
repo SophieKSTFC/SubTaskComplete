@@ -20,15 +20,30 @@ class LimitedSubtaskStatusController extends BaseController
      *
      * @access public
      */
-    public function change()
+    public function change($debug=false, $params=null)
 
     {
 
         error_log("Cntroller was called");
-        $task = $this->getTask();
-        $subtask = $this->getSubtask($task);
-        $fragment = $this->request->getStringParam('fragment');
-        $projectid = $this->request->getIntegerParam('project_id');
+
+        if($debug){
+            error_log("debug controller")
+            $task = $params['task_id'];
+            $subtask = $params['subtask_id'];
+            $fragment = $params['fragment']; 
+            $projectid = $params['project_id'];
+
+        }
+        else{
+
+            $task = $this->getTask();
+            $subtask = $this->getSubtask($task);
+            $fragment = $this->request->getStringParam('fragment');
+            $projectid = $this->request->getIntegerParam('project_id');
+
+        }
+
+
         $project_role = $this->helper->projectRole->getProjectUserRole($projectid);
   
         // only change the status from complete to not started if user is the project manager
