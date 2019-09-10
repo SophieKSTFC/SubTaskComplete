@@ -26,8 +26,6 @@ class LimitedSubtaskStatusTest extends base {
         $projectModel = new ProjectModel($this->container);
         $projectUserRoleModel = new ProjectUserRoleModel($this->container);
         $userModel = new UserModel($this->container);
-        $permissionModel = new ProjectPermissionModel($this->container);
-        $permissionProcedure = new ProjectPermissionProcedure($this->container);
         $taskCreationModel = new TaskCreationModel($this->container);
         $subtaskModel = new SubtaskModel($this->container);
         $subtaskStatusModel = new SubtaskStatusModel($this->container);
