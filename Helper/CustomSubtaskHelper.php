@@ -3,7 +3,8 @@
 namespace Kanboard\Plugin\SubTaskComplete\Helper;
 use Kanboard\Core\Base;
 use Kanboard\Model\SubtaskModel;
-/**
+use Kanboard\Plugin\SubTaskComplete\Controller\LimitedSubtaskController;
+/*
  * Subtask helpers
  *
  * @package helper
@@ -47,7 +48,7 @@ class CustomSubtaskHelper extends Base
      * @param  int    $userId
      * @return string
      */
-    public function renderToggleStatus(array $task, array $subtask, $fragment = '', $userId = 0)
+    public function renderToggleStatus(array $task, array $subtask, $fragment = '', $userId = 0, $debug = false)
     {
         error_log("helper was called");
 
@@ -71,8 +72,14 @@ class CustomSubtaskHelper extends Base
                 error_log("helper was called3");
                 $html = $this->helper->url->link($title, 'SubtaskRestrictionController', 'show', $params, false, 'js-modal-confirm', $this->getSubtaskTooltip($subtask), array('plugin' => 'SubTaskComplete'));
             } else {
-                error_log("helper was called2");
-                $html = $this->helper->url->link($title, 'LimitedSubtaskStatusController', 'change', $params, false, 'js-subtask-toggle-status', $this->getSubtaskTooltip($subtask));
+                if($debug){
+                    error_log("debug helper was called");
+                    $controller = new LimitedSubtaskController($this->container);
+                    $html = $controller->change();
+                }
+                else{
+                    $html = $this->helper->url->link($title, 'LimitedSubtaskStatusController', 'change', $params, false, 'js-subtask-toggle-status', $this->getSubtaskTooltip($subtask));
+                }
             }
         }
         return '<span class="subtask-title">'.$html.'</span>';
