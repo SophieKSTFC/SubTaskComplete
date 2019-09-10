@@ -47,6 +47,7 @@ class LimitedSubtaskStatusTest extends base {
 
         $this->assertNotEmpty($subtask);
         error_log(print_r($subtask));
+        error_log(print_r($task));
         $this->assertEquals(SubtaskModel::STATUS_TODO, $subtask['status']);
 
         //create two users
@@ -61,6 +62,7 @@ class LimitedSubtaskStatusTest extends base {
         
         $this->assertEquals(SubtaskModel::STATUS_TODO, $subtask['status']);
         error_log("status: ".$subtask['status']);
+        error_log(print_r($subtask));
         $this->subtask->renderToggleStatus($task, $subtask, $fragment = '', $userId = 2);
 
         $subtask = $subtaskModel->getById(1);
