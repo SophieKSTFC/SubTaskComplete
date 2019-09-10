@@ -57,7 +57,7 @@ class CustomSubtaskHelper extends Base
             $html = $this->renderTitle($subtask);
         } else {
 
-            error_log("helper was called");
+            error_log("helper was called2");
             $title = $this->renderTitle($subtask);
             $params = array(
                 'project_id' => $task['project_id'],
