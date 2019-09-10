@@ -71,8 +71,9 @@ class LimitedSubtaskStatusTest extends base {
         error_log(print_r($subtask));
 
         $helper = new CustomSubtaskHelper($this->container);
+        error_log(print_r($helper));
         $helper->renderToggleStatus($task, $subtask, $fragment = '', $userId = 2);
-
+        
         $subtask = $subtaskModel->getById(1);
         $this->assertNotEmpty($subtask);
         error_log("status: ".$subtask['status']);
