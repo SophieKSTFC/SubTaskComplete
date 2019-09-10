@@ -56,16 +56,18 @@ class LimitedSubtaskStatusTest extends base {
         $projectUserRoleModel->addUser(1, 2, Role::PROJECT_MANAGER);
         $projectUserRoleModel->addUser(1, 3, Role::PROJECT_MEMBER);
 
-        $helper = new CustomSubtaskHelper($this->container);
-
+        //$helper = new CustomSubtaskHelper($this->container);
+        
         $this->assertEquals(SubtaskModel::STATUS_TODO, $subtask['status']);
         error_log("status: ".$subtask['status']);
-        $helper->renderToggleStatus($task, $subtask, $fragment = '', $userId = 2);
+        $this->subtask->renderToggleStatus($task, $subtask, $fragment = '', $userId = 2);
 
         $subtask = $subtaskModel->getById(1);
         $this->assertNotEmpty($subtask);
         error_log("status: ".$subtask['status']);
         $this->assertEquals(SubtaskModel::STATUS_INPROGRESS, $subtask['status']);
+        
+        
         /** 
 
        
