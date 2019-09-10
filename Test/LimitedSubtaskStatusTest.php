@@ -44,10 +44,13 @@ class LimitedSubtaskStatusTest extends base {
         //check subtask exists.
         $subtask = $subtaskModel->getById(1);
         $task = $taskFinderModel->getById(1);
+        $project = $projectModel->getById(1);
 
         $this->assertNotEmpty($subtask);
         error_log(print_r($subtask));
         error_log(print_r($task));
+        error_log(print_r($project));
+
         $this->assertEquals(SubtaskModel::STATUS_TODO, $subtask['status']);
 
         //create two users
@@ -57,7 +60,8 @@ class LimitedSubtaskStatusTest extends base {
         //assign roles to the users
         $projectUserRoleModel->addUser(1, 2, Role::PROJECT_MANAGER);
         $projectUserRoleModel->addUser(1, 3, Role::PROJECT_MEMBER);
-
+        
+        error_log(print_r($project));
         //$helper = new CustomSubtaskHelper($this->container);
         
         $this->assertEquals(SubtaskModel::STATUS_TODO, $subtask['status']);
