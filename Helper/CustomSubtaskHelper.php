@@ -1,6 +1,7 @@
 <?php
 
 namespace Kanboard\Plugin\SubTaskComplete\Helper;
+namespace Kanboard\Plugin\SubTaskComplete\Controller;
 use Kanboard\Core\Base;
 use Kanboard\Model\SubtaskModel;
 use Kanboard\Plugin\SubTaskComplete\Controller\LimitedSubtaskController;
