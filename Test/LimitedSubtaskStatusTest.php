@@ -62,6 +62,8 @@ class LimitedSubtaskStatusTest extends base {
         $projectUserRoleModel->addUser(1, 3, Role::PROJECT_MEMBER);
         
         error_log(print_r($project));
+
+        $this->assertEquals(Role::PROJECT_MANAGER, $projectUserRoleModel->getUserRole(1, 2));
         //$helper = new CustomSubtaskHelper($this->container);
         
         $this->assertEquals(SubtaskModel::STATUS_TODO, $subtask['status']);
