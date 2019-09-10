@@ -1,6 +1,8 @@
 <?php
 
 require_once 'tests/units/Base.php';
+require_once __DIR__.'app/Controller/BaseController.php';
+
 use Kanboard\Plugin\SubTaskComplete\Controller\LimitedSubtaskStatusController;
 use Kanboard\Model\TaskFinderModel;
 use Kanboard\Model\ProjectModel;
