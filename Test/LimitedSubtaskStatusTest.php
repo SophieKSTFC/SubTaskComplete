@@ -69,7 +69,9 @@ class LimitedSubtaskStatusTest extends base {
         $this->assertEquals(SubtaskModel::STATUS_TODO, $subtask['status']);
         error_log("status: ".$subtask['status']);
         error_log(print_r($subtask));
-        $this->container['helper']->renderToggleStatus($task, $subtask, $fragment = '', $userId = 2);
+
+        $helper = new CustomSubtaskHelper($this->container);
+        $this->container['helper']['subtask']->renderToggleStatus($task, $subtask, $fragment = '', $userId = 2);
 
         $subtask = $subtaskModel->getById(1);
         $this->assertNotEmpty($subtask);
