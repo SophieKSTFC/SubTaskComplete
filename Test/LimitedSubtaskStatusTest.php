@@ -1,9 +1,10 @@
 <?php
 
 require_once 'tests/units/Base.php';
-require_once __DIR__.'app/Controller/BaseController.php';
 
 use Kanboard\Plugin\SubTaskComplete\Controller\LimitedSubtaskStatusController;
+use Kanboard\Plugin\SubTaskComplete\Helper\CustomSubtaskHelper;
+
 use Kanboard\Model\TaskFinderModel;
 use Kanboard\Model\ProjectModel;
 use Kanboard\Model\ProjectMetadataModel;
@@ -24,7 +25,7 @@ class LimitedSubtaskStatusTest extends base {
         
         $this->container['helper']->register('subtask', '\Kanboard\Plugin\SubTaskComplete\Helper\CustomSubtaskHelper');
         
-        $limitedController = new LimitedSubtaskStatusController($this->container);
+        //$limitedController = new LimitedSubtaskStatusController($this->container);
         $projectModel = new ProjectModel($this->container);
         $projectUserRoleModel = new ProjectUserRoleModel($this->container);
         $userModel = new UserModel($this->container);
@@ -52,16 +53,22 @@ class LimitedSubtaskStatusTest extends base {
         $projectUserRoleModel->addUser(1, 2, Role::PROJECT_MANAGER);
         $projectUserRoleModel->addUser(1, 3, Role::PROJECT_MEMBER);
 
-        
+        $helper = new CustomSubtaskHelper();
+        //$helper->renderToggleStatus();
+
+        /** 
+
+       
+        */
         // Set the current logged user
         $_SESSION['user'] = array('id' => 2);
 
         //think we need a session
-        $limitedController->change();
-        $this->assertEquals(SubtaskModel::STATUS_INPROGRESS, $subtask['status']);
+        //$limitedController->change();
+        //$this->assertEquals(SubtaskModel::STATUS_INPROGRESS, $subtask['status']);
 
-        $limitedController->change();
-        $this->assertEquals(SubtaskModel::STATUS_DONE, $subtask['status']);
+        //$limitedController->change();
+        //$this->assertEquals(SubtaskModel::STATUS_DONE, $subtask['status']);
         
         
         
