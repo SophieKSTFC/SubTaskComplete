@@ -24,7 +24,7 @@ class LimitedSubtaskStatusController extends BaseController
 
     {
 
-        error_log("I was called");
+        error_log("Cntroller was called");
         $task = $this->getTask();
         $subtask = $this->getSubtask($task);
         $fragment = $this->request->getStringParam('fragment');

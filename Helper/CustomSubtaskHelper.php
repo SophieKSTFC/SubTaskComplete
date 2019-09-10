@@ -68,8 +68,10 @@ class CustomSubtaskHelper extends Base
                 'plugin' => 'SubTaskComplete'
             );
             if ($subtask['status'] == 0 && $this->hasSubtaskInProgress()) {
+                error_log("helper was called3");
                 $html = $this->helper->url->link($title, 'SubtaskRestrictionController', 'show', $params, false, 'js-modal-confirm', $this->getSubtaskTooltip($subtask), array('plugin' => 'SubTaskComplete'));
             } else {
+                error_log("helper was called2");
                 $html = $this->helper->url->link($title, 'LimitedSubtaskStatusController', 'change', $params, false, 'js-subtask-toggle-status', $this->getSubtaskTooltip($subtask));
             }
         }
