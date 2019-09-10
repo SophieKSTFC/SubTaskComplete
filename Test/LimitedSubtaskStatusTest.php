@@ -30,6 +30,7 @@ class LimitedSubtaskStatusTest extends base {
         $projectUserRoleModel = new ProjectUserRoleModel($this->container);
         $userModel = new UserModel($this->container);
         $taskCreationModel = new TaskCreationModel($this->container);
+        $taskFinderModel = new TaskFinderModel($this->container);
         $subtaskModel = new SubtaskModel($this->container);
         $subtaskStatusModel = new SubtaskStatusModel($this->container);
 
@@ -42,6 +43,8 @@ class LimitedSubtaskStatusTest extends base {
 
         //check subtask exists.
         $subtask = $subtaskModel->getById(1);
+        $task = $taskFinderModel->getById(1);
+
         $this->assertNotEmpty($subtask);
         $this->assertEquals(SubtaskModel::STATUS_TODO, $subtask['status']);
 
@@ -53,15 +56,19 @@ class LimitedSubtaskStatusTest extends base {
         $projectUserRoleModel->addUser(1, 2, Role::PROJECT_MANAGER);
         $projectUserRoleModel->addUser(1, 3, Role::PROJECT_MEMBER);
 
-        $helper = new CustomSubtaskHelper();
-        //$helper->renderToggleStatus();
+        $helper = new CustomSubtaskHelper($this->container);
+
+        $this->assertEquals(SubtaskModel::STATUS_TODO, $subtask['status']);
+        $helper->renderToggleStatus($task, $subtask, $fragment = '', $userId = 2);
+
+        $this->assertEquals(SubtaskModel::STATUS_INPROGRESS, $subtask['status']);
 
         /** 
 
        
         */
         // Set the current logged user
-        $_SESSION['user'] = array('id' => 2);
+        //$_SESSION['user'] = array('id' => 2);
 
         //think we need a session
         //$limitedController->change();
