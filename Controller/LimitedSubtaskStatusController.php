@@ -24,10 +24,10 @@ class LimitedSubtaskStatusController extends BaseController
 
     {
 
-        error_log("Cntroller was called");
+        //error_log("Cntroller was called");
 
         if($debug){
-            error_log("debug controller");
+            //error_log("debug controller");
             $task = $debug_params['task'];
             $subtask = $debug_params['subtask'];
             $fragment = $debug_params['fragment']; 
@@ -61,7 +61,7 @@ class LimitedSubtaskStatusController extends BaseController
                 }
                 break;
             default:
-                error_log("Subtask status not recognised.");
+                //error_log("Subtask status not recognised.");
                 break;
         }
 
