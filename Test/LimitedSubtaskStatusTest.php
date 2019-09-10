@@ -18,7 +18,7 @@ use Kanboard\Core\Security\Role;
 class LimitedSubtaskStatusTest extends base {
 
 
-    public function GIVEN_user_is_project_mananger_WHEN_subtask_is_complete_THEN_user_can_set_to_not_started(){
+    public function testGIVEN_user_is_project_mananger_WHEN_subtask_is_complete_THEN_user_can_set_to_not_started(){
         
         $this->container['helper']->register('subtask', '\Kanboard\Plugin\SubTaskComplete\Helper\CustomSubtaskHelper');
         
