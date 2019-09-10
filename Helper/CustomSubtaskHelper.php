@@ -73,9 +73,17 @@ class CustomSubtaskHelper extends Base
                 $html = $this->helper->url->link($title, 'SubtaskRestrictionController', 'show', $params, false, 'js-modal-confirm', $this->getSubtaskTooltip($subtask), array('plugin' => 'SubTaskComplete'));
             } else {
                 if($debug){
+                    $debug_params = array(
+                        'project_id' => $task['project_id'],
+                        'task'    => $task,
+                        'subtask' => $subtask,
+                        'user_id' => $userId,
+                        'fragment'=> $fragment,
+                    );
                     error_log("debug helper was called");
+
                     $controller = new LimitedSubtaskStatusController($this->container);
-                    $html = $controller->change($debug=true, $params);
+                    $html = $controller->change($debug=true, $debug_params);
                 }
                 else{
                     $html = $this->helper->url->link($title, 'LimitedSubtaskStatusController', 'change', $params, false, 'js-subtask-toggle-status', $this->getSubtaskTooltip($subtask));

@@ -20,7 +20,7 @@ class LimitedSubtaskStatusController extends BaseController
      *
      * @access public
      */
-    public function change($debug=false, $params=null)
+    public function change($debug=false, $debug_params=null)
 
     {
 
@@ -28,10 +28,10 @@ class LimitedSubtaskStatusController extends BaseController
 
         if($debug){
             error_log("debug controller");
-            $task = $params['task_id'];
-            $subtask = $params['subtask_id'];
-            $fragment = $params['fragment']; 
-            $projectid = $params['project_id'];
+            $task = $debug_params['task'];
+            $subtask = $debug_params['subtask'];
+            $fragment = $debug_params['fragment']; 
+            $projectid = $debug_params['project_id'];
 
         }
         else{
