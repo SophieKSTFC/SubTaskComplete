@@ -52,6 +52,8 @@ class CustomSubtaskHelper extends Base
         if (! $this->helper->user->hasProjectAccess('SubtaskController', 'edit', $task['project_id'])) {
             $html = $this->renderTitle($subtask);
         } else {
+
+            error_log("helper was called");
             $title = $this->renderTitle($subtask);
             $params = array(
                 'project_id' => $task['project_id'],

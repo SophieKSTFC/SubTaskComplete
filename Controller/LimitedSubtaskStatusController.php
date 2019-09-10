@@ -23,6 +23,8 @@ class LimitedSubtaskStatusController extends BaseController
     public function change()
 
     {
+
+        error_log("I was called");
         $task = $this->getTask();
         $subtask = $this->getSubtask($task);
         $fragment = $this->request->getStringParam('fragment');
