@@ -18,8 +18,10 @@ Requirements
 Installation
 ------------
 
+- Clone this repository into the folder plugins/SubTaskComplete
+Note: Plugin folder is case-sensitive.
 
 Documentation
 -------------
 
-TODO.
+- This plugin will stop any user who is not a project manager for a given project from changing the status of a completed subtask back to 'To do'.

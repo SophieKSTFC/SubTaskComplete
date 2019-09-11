@@ -28,7 +28,7 @@ class Plugin extends Base
 
     public function getPluginDescription()
     {
-        return t('Kanboard plugin to stop non project managers amending subtask complete status');
+        return t('Kanboard plugin which stops users who are NOT project managers from being able to set the status of a completed subtask back to TO-DO.');
     }
 
     public function getPluginAuthor()
