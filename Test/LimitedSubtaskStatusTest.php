@@ -20,12 +20,10 @@ use Kanboard\Core\Security\Role;
 
 class LimitedSubtaskStatusTest extends base {
 
+    public function setUp(){
 
-    public function testGIVEN_user_is_project_mananger_WHEN_subtask_is_complete_THEN_user_can_set_to_not_started(){
-        
         $this->container['helper']->register('subtask', '\Kanboard\Plugin\SubTaskComplete\Helper\CustomSubtaskHelper');
-        
-        //$limitedController = new LimitedSubtaskStatusController($this->container);
+
         $projectModel = new ProjectModel($this->container);
         $projectUserRoleModel = new ProjectUserRoleModel($this->container);
         $userModel = new UserModel($this->container);
@@ -60,46 +58,28 @@ class LimitedSubtaskStatusTest extends base {
         //assign roles to the users
         $projectUserRoleModel->addUser(1, 2, Role::PROJECT_MANAGER);
         $projectUserRoleModel->addUser(1, 3, Role::PROJECT_MEMBER);
-        
-        //error_log(print_r($project));
+
 
         $this->assertEquals(Role::PROJECT_MANAGER, $projectUserRoleModel->getUserRole(1, 2));
-        //$helper = new CustomSubtaskHelper($this->container);
-        
-        $this->assertEquals(SubtaskModel::STATUS_TODO, $subtask['status']);
-        error_log("status: ".$subtask['status']);
-        //error_log(print_r($subtask));
+        $this->assertEquals(Role::PROJECT_MEMBER, $projectUserRoleModel->getUserRole(1, 3));
 
         $helper = new CustomSubtaskHelper($this->container);
-        //error_log(print_r($helper));
+
+    }
+    public function testGIVEN_user_is_project_mananger_WHEN_subtask_is_todo_THEN_user_can_set_to_in_progress(){
+        
+        $this->assertEquals(SubtaskModel::STATUS_TODO, $subtask['status']);
+
         $_SESSION['user'] = array('id' => 2, 'role' => Role::APP_ADMIN);
         $helper->renderToggleStatus($task, $subtask, $fragment = '', $userId = 2, $debug=true);
         
         $subtask = $subtaskModel->getById(1);
         $this->assertNotEmpty($subtask);
         error_log("status: ".$subtask['status']);
-        //error_log(print_r($subtask));
 
         $this->assertEquals(SubtaskModel::STATUS_INPROGRESS, $subtask['status']);
         
-        
-        /** 
-
-       
-        */
-        // Set the current logged user
-        //$_SESSION['user'] = array('id' => 2);
-
-        //think we need a session
-        //$limitedController->change();
-        //$this->assertEquals(SubtaskModel::STATUS_INPROGRESS, $subtask['status']);
-
-        //$limitedController->change();
-        //$this->assertEquals(SubtaskModel::STATUS_DONE, $subtask['status']);
-        
-        
-        
-       
+ 
     }
 }
 

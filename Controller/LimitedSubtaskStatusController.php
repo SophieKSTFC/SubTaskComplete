@@ -84,8 +84,6 @@ class LimitedSubtaskStatusController extends BaseController
 
         $status = $this->subtaskStatusModel->toggleStatus($subtask['id']);
         $subtask['status'] = $status;
-
-        error_log("status in controller: ".$status);
     }
 
     /**
