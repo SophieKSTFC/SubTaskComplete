@@ -22,7 +22,7 @@ class LimitedSubtaskStatusTest extends base {
 
     public function setUp(){
 
-        $this->container['helper']->register('subtask', '\Kanboard\Plugin\SubTaskComplete\Helper\CustomSubtaskHelper');
+        //$this->container['helper']->register('subtask', '\Kanboard\Plugin\SubTaskComplete\Helper\CustomSubtaskHelper');
 
         $this->$projectModel = new ProjectModel($this->container);
         $this->$projectUserRoleModel = new ProjectUserRoleModel($this->container);
