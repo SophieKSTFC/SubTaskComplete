@@ -23,7 +23,6 @@ class LimitedSubtaskStatusTest extends base {
   
     public function testGIVEN_user_is_project_mananger_WHEN_subtask_is_todo_THEN_user_can_set_to_in_progress(){
         
-        //$this->container['helper']->register('subtask', '\Kanboard\Plugin\SubTaskComplete\Helper\CustomSubtaskHelper');
 
         $projectModel = new ProjectModel($this->container);
         $projectUserRoleModel = new ProjectUserRoleModel($this->container);
@@ -40,12 +39,17 @@ class LimitedSubtaskStatusTest extends base {
         //create a subtask
         $this->assertEquals(1, $subtaskModel->create(array('title' => 'subtask #1', 'task_id' => 1)));
 
-        //check subtask exists.
+        //get subtask, task and project.
         $subtask = $subtaskModel->getById(1);
         $task = $taskFinderModel->getById(1);
         $project = $projectModel->getById(1);
 
+        //check subtask, task and project are not empty 
         $this->assertNotEmpty($subtask);
+        $this->assertNotEmpty($task);
+        $this->assertNotEmpty($project);
+
+        // assert subtask is TODO initially
         $this->assertEquals(SubtaskModel::STATUS_TODO, $subtask['status']);
 
         //create two users
@@ -56,11 +60,14 @@ class LimitedSubtaskStatusTest extends base {
         $projectUserRoleModel->addUser(1, 2, Role::PROJECT_MANAGER);
         $projectUserRoleModel->addUser(1, 3, Role::PROJECT_MEMBER);
 
+        // check roles are correct
         $this->assertEquals(Role::PROJECT_MANAGER, $projectUserRoleModel->getUserRole(1, 2));
         $this->assertEquals(Role::PROJECT_MEMBER, $projectUserRoleModel->getUserRole(1, 3));
 
+        // create out custom subtask helper
         $helper = new CustomSubtaskHelper($this->container);
 
+        // set the user to be a project manager
         $_SESSION['user'] = array('id' => 2, 'role' => Role::APP_ADMIN);
 
         // toggle status to in progress
@@ -81,11 +88,11 @@ class LimitedSubtaskStatusTest extends base {
         $this->assertNotEmpty($subtask);
         $this->assertEquals(SubtaskModel::STATUS_TODO, $subtask['status']);
 
-
+        //switch user to project member and confirm status changes
         $_SESSION['user'] = array('id' => 3, 'role' => Role::APP_ADMIN);
 
+        // toggle status to in progress
         $this->assertEquals(SubtaskModel::STATUS_TODO, $subtask['status']);
-
         $helper->renderToggleStatus($task, $subtask, $fragment = '', $userId = 3, $debug=true);
         $subtask = $subtaskModel->getById(1);
         $this->assertNotEmpty($subtask);
@@ -103,10 +110,7 @@ class LimitedSubtaskStatusTest extends base {
         $this->assertNotEmpty($subtask);
         $this->assertEquals(SubtaskModel::STATUS_DONE, $subtask['status']);
 
- 
     }
-
-
 
 }
 

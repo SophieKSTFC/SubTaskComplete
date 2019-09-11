@@ -50,15 +50,10 @@ class CustomSubtaskHelper extends Base
      */
     public function renderToggleStatus(array $task, array $subtask, $fragment = '', $userId = 0, $debug = false)
     {
-        //error_log("helper was called");
 
         if (! $this->helper->user->hasProjectAccess('SubtaskController', 'edit', $task['project_id'])) {
-            //error_log("not got project access called");
-            //error_log("user".$this->helper->user->getFullname(2));
             $html = $this->renderTitle($subtask);
         } else {
-
-            //error_log("helper was called2");
             $title = $this->renderTitle($subtask);
             $params = array(
                 'project_id' => $task['project_id'],
@@ -69,9 +64,9 @@ class CustomSubtaskHelper extends Base
                 'plugin' => 'SubTaskComplete'
             );
             if ($subtask['status'] == 0 && $this->hasSubtaskInProgress()) {
-                //error_log("helper was called3");
                 $html = $this->helper->url->link($title, 'SubtaskRestrictionController', 'show', $params, false, 'js-modal-confirm', $this->getSubtaskTooltip($subtask), array('plugin' => 'SubTaskComplete'));
             } else {
+                // used for unit testing
                 if($debug){
                     $debug_params = array(
                         'project_id' => $task['project_id'],
@@ -80,7 +75,6 @@ class CustomSubtaskHelper extends Base
                         'user_id' => $userId,
                         'fragment'=> $fragment,
                     );
-                    //error_log("debug helper was called");
                     $controller = new LimitedSubtaskStatusController($this->container);
                     $html = $controller->change($debug=true, $debug_params);
                 }

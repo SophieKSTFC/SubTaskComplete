@@ -23,7 +23,7 @@ class LimitedSubtaskStatusController extends BaseController
     public function change($debug=false, $debug_params=null)
 
     {
-
+        // used for unit testing
         if($debug){
             $task = $debug_params['task'];
             $subtask = $debug_params['subtask'];
@@ -38,11 +38,8 @@ class LimitedSubtaskStatusController extends BaseController
             $projectid = $this->request->getIntegerParam('project_id');
         }
 
-
         $project_role = $this->helper->projectRole->getProjectUserRole($projectid);
 
-        error_log("role: ".$project_role);
-  
         // only change the status from complete to not started if user is the project manager
         switch($subtask['status']){
             
@@ -69,6 +66,7 @@ class LimitedSubtaskStatusController extends BaseController
         } else {
             $html = $this->helper->subtask->renderToggleStatus($task, $subtask);
         }
+        // used for unit testing where we don't have http interaction
         if(!$debug){
             $this->response->html($html);
         }
