@@ -69,8 +69,9 @@ class LimitedSubtaskStatusController extends BaseController
         } else {
             $html = $this->helper->subtask->renderToggleStatus($task, $subtask);
         }
-
-        $this->response->html($html);
+        if(!$debug){
+            $this->response->html($html);
+        }
     }
 
     /**
