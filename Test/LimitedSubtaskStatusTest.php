@@ -80,9 +80,34 @@ class LimitedSubtaskStatusTest extends base {
         $subtask = $subtaskModel->getById(1);
         $this->assertNotEmpty($subtask);
         $this->assertEquals(SubtaskModel::STATUS_TODO, $subtask['status']);
-        
+
+
+        $_SESSION['user'] = array('id' => 3, 'role' => Role::APP_ADMIN);
+
+        $this->assertEquals(SubtaskModel::STATUS_TODO, $subtask['status']);
+
+        $helper->renderToggleStatus($task, $subtask, $fragment = '', $userId = 3, $debug=true);
+        $subtask = $subtaskModel->getById(1);
+        $this->assertNotEmpty($subtask);
+        $this->assertEquals(SubtaskModel::STATUS_INPROGRESS, $subtask['status']);
+
+        // toggle status to complete
+        $helper->renderToggleStatus($task, $subtask, $fragment = '', $userId = 3, $debug=true);
+        $subtask = $subtaskModel->getById(1);
+        $this->assertNotEmpty($subtask);
+        $this->assertEquals(SubtaskModel::STATUS_DONE, $subtask['status']);
+
+        // toggle status to to do again and assert it does not change
+        $helper->renderToggleStatus($task, $subtask, $fragment = '', $userId = 3, $debug=true);
+        $subtask = $subtaskModel->getById(1);
+        $this->assertNotEmpty($subtask);
+        $this->assertEquals(SubtaskModel::STATUS_DONE, $subtask['status']);
+
  
     }
+
+
+
 }
 
 ?>
