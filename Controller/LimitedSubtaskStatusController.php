@@ -24,10 +24,7 @@ class LimitedSubtaskStatusController extends BaseController
 
     {
 
-        //error_log("Cntroller was called");
-
         if($debug){
-            //error_log("debug controller");
             $task = $debug_params['task'];
             $subtask = $debug_params['subtask'];
             $fragment = $debug_params['fragment']; 
@@ -35,16 +32,16 @@ class LimitedSubtaskStatusController extends BaseController
 
         }
         else{
-
             $task = $this->getTask();
             $subtask = $this->getSubtask($task);
             $fragment = $this->request->getStringParam('fragment');
             $projectid = $this->request->getIntegerParam('project_id');
-
         }
 
 
         $project_role = $this->helper->projectRole->getProjectUserRole($projectid);
+
+        error_log("role: ".$project_role);
   
         // only change the status from complete to not started if user is the project manager
         switch($subtask['status']){
@@ -61,7 +58,7 @@ class LimitedSubtaskStatusController extends BaseController
                 }
                 break;
             default:
-                //error_log("Subtask status not recognised.");
+                error_log("Subtask status not recognised.");
                 break;
         }
 
